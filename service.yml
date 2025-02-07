@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort    # Permet d'exposer une adresse IP sur un noeud sur un port statique
+                    # ClusterIP: Permet de faire communiquer les Pods entre eux
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 80  # Port du conteneur
+    nodePort: 31080 # Port de l'extérieur qui va être exposé sur le node sur le cluster
+  
